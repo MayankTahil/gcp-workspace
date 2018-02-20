@@ -1,0 +1,16 @@
+---
+version: "2"
+services:
+  # Docker-in-Docker with Cloud9 IDE for a on-demand coding workspace 
+  workspace:
+    build:
+      context: ./
+      dockerfile: workspace.dockerfile
+    image: workspace
+    privileged: true
+    ports:
+      - "127.0.0.1:80:80/tcp"
+    volumes:
+      - ./workspace:/workspace
+      - ./data/gcloud-conf:/.config/gcloud
+      - ./data/kubectl-conf:/root/.kube
